@@ -1,0 +1,69 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 2;
+  font-size: 25px;
+}
+.contact{
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+   
+}
+
+.zentai{
+  /* background:url(note.png) center top/1000px no-repeat; */
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  
+}
+a{
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+   
+  
+}
+
+.top{
+  display: flex;
+  /* justify-content: center; */
+  padding-bottom: 50px;
+}
+
+form{
+  padding:30px;
+  width: 800px;
+  justify-content: center;
+  align-items: center;
+}
+
+form dl dt{
+  width: 165px;
+  padding:10px 0;
+  float:left;
+  clear:both;
+}
+
+form dl dd{
+  padding:10px 0;
+}
+input#username {
+  width: 450px;
+  height: 30px;
+ 
+}
+input#age {
+  width: 200px;
+  height: 30px;
+
+}
+textarea#s {
+  width: 500px;
+  height: 600px;
+  margin-top: 30px;
+}
+button#send {
+  width: 100px;
+  height: 30px;
+}

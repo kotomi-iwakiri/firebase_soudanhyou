@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>窓口相談票</title>
+</head>
+
+<body>
+<!-- タイトル -->
+<div class="zentai">
+  <div class="top">
+   <img src="mado.jpg" alt="" width="80px">
+   <div>窓口相談票</div>
+   <img src="pen.png" alt=""width=40px height="40px">
+  </div>
+<!-- コンテンツ表示画面 -->
+<div class="a">
+<form class="contact" action="index.html" method="post">
+ <dl>
+   <dt>相談者氏名</dt>
+   <dd><input type="text" id="username"></dd>
+   <dt>年齢</dt>
+   <dd><input type="text" id="age"></dd>
+   <dt>主訴</dt>
+   <dd><textarea  rows="5" id="s"></textarea></dd>
+ </dl>
+
+   <!-- 送信ボタン -->
+   <button id="send">入力</button>
+  </form>
+</div>
+  <!-- チャット文字をリスト表示 -->
+  <div id="output"></div>
+</div>
+<!-- コンテンツ表示画面 -->
+
+
+
+ <!-- JQuery -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <!-- JQuery -->
+
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.8.0/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCuuAC1ACvAOxSx2WOobqOiMCbDF2ExBGc",
+    authDomain: "gschat-f901e.firebaseapp.com",
+    databaseURL: "https://gschat-f901e.firebaseio.com",
+    projectId: "gschat-f901e",
+    storageBucket: "gschat-f901e.appspot.com",
+    messagingSenderId: "53877215346",
+    appId: "1:53877215346:web:2965d8d0bfe7a4a24e72eb",
+    measurementId: "G-VDT8EXNZVS"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  // MSG送受信準備
+  // 
+  const newPostRef = firebase.database().ref();
+
+// 送信ボタンを押した時のアクション
+$("#send").on("click",function(){
+  var a = $("#s").val() ;
+
+  console.log(a);
+  
+
+  if(a === '認知症'){
+    alert('若年性認知症の方への支援があります。高齢・障害支援課（内4129)へ連絡してください');
+  }else{
+      newPostRef.push({
+      username: $("#username").val(),
+      age: $("#age").val(),
+      s: $("#s").val()     
+    });
+    $("#username").val("");
+    $("#age").val("");
+    $("#s").val("");
+  }
+});
+
+// メッセージデータ受信
+newPostRef.on('child_added' ,function(data) {
+   var v = data.val();
+   var k = data.key;
+   var str = '<dl><dt>'+v.username+'</dt><dd>'+v.age+'</dd><dt>'+v.s+'</dt></dl>';
+   $("#output").append(str);
+});
+
+
+
+
+
+</script>
+
+
+</script>
+</body>
+</html>
